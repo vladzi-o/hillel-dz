@@ -1,0 +1,15 @@
+.box {
+    display: flex;
+    justify-content: center;
+}
+
+.circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: 15px;
+}
+
+.text {
+    text-align: center;
+}
