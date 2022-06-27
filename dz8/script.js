@@ -11,11 +11,11 @@ destination.unshift('Battle')
 
 rainbow = hero.concat(native, destination);
 colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
-output = []
+output = ""
 for (i = 0; i < rainbow.length; i++) {
-    output.push(`<div class="text"><div class="circle" style="background-color: ${colors[i]}"></div>${rainbow[i]}</div>`);
+    output = output + `<div class="text"><div class="circle" style="background-color: ${colors[i]}"></div>${rainbow[i]}</div>`;
 }
 
 document.write (
-    `<div class="box">${output.join("")}</div>`
+    `<div class="box">${output}</div>`
 )
