@@ -26,18 +26,6 @@ function formatArray(array) {
 const formatedMonday = formatArray(monday);
 const formatedTuesday = formatArray(tuesday);
 
-
-
-
-// Для элементов массивов monday и tuesday необходимо выполнить следующие методы:
-
-
-
-// Сконвертировать время потраченное на выполнение задач в часы, вместо минут.
-// Оставить только те задачи, на выполнение которых нужно более 2-х часов.
-// Умножить результат на часовую ставку (amount) и добавить полученное значение в качестве третъего элемента в массив.
-// Вывести в html таблицу, которая состоит из ячеек с задачами в виде:
-
 document.write (
     `<table>
         <thead>
@@ -53,7 +41,7 @@ document.write (
                 <tr>
                     <td>${task[0]}</td>
                     <td>${task[1]}</td>
-                    <td>${task[2]}</td>
+                    <td>${task[2]}$</td>
                 </tr>`
             }).join('')}
         </tbody>
