@@ -2,7 +2,6 @@ function Product(category, type, price) {
   this.category = category;
   this.type = type;
   this.price = price;
-  console.log(this);
 }
 
 Product.prototype.render = function () {
@@ -17,7 +16,7 @@ Product.prototype.render = function () {
   `;
 };
 
-let kitchenProducts = [
+const kitchenProducts = [
   {
     type: "grater",
     price: 10,
@@ -36,7 +35,7 @@ let kitchenProducts = [
   },
 ];
 
-let devicesProducts = [
+const devicesProducts = [
   {
     type: "desktop",
     price: [100, 1000],
@@ -55,7 +54,7 @@ let devicesProducts = [
   },
 ];
 
-let cosmeticsProducts = [
+const cosmeticsProducts = [
   {
     type: "blush",
     price: 100,
@@ -90,13 +89,13 @@ document.write(`
       (item) => new Product("kitchen", item.type, item.price)
     ),
     ...devicesProducts.map(
-      ({ type, price }) => new Product("devices", type, price)
+      (item) => new Product("devices", item.type, item.price)
     ),
     ...cosmeticsProducts.map(
-      ({ type, price }) => new Product("cosmetics", type, price)
+      (item) => new Product("cosmetics", item.type, item.price)
     ),
   ]
-    .map((product) => product.render())
+    .map((instance) => instance.render())
     .join("")}
 </table>
 `);
