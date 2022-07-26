@@ -99,3 +99,27 @@ document.write(`
     .join("")}
 </table>
 `);
+
+function makeProduct(category, list) {
+  return list.map(function (product) {
+    return new Product(category, product.type, product.price);
+  });
+}
+
+const products = {
+  kitchen: kitchenProducts,
+  devices: devicesProducts,
+  cosmetics: cosmeticsProducts,
+};
+
+let productsList = [];
+for (let key in products) {
+  console.log(makeProduct(key, products[key]));
+  productsList.push(...makeProduct(key, products[key]));
+}
+
+let finishProducts = productsList
+  .map(function (obj) {
+    return obj.render();
+  })
+  .join("");
