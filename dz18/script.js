@@ -115,6 +115,7 @@ class User {
   }
 
   render() {
+    const courseMarkup = this.courses ? this.renderCourses() : "";
     return `
     <div class="user">
       <div class="user__info">
@@ -130,15 +131,12 @@ class User {
           <p>${this.role}</p>
         </div>
       </div>
-      ${this.renderCourses()}
+      ${courseMarkup}
     </div>
     `;
   }
 
   renderCourses() {
-    if (!this.courses) {
-      return "";
-    }
     return `
     <div class="user__courses">
       ${this.courses
@@ -156,23 +154,16 @@ class User {
   }
 
   markToGrade(mark) {
-    if (mark <= 20) {
-      return gradation[20];
-    } else if (mark <= 55) {
-      return gradation[55];
-    } else if (mark <= 85) {
-      return gradation[85];
-    } else {
-      return gradation[100];
+    for (let key in gradation) {
+      if (mark <= key) {
+        return gradation[key];
+      }
     }
   }
 }
 
 class Admin extends User {
   renderCourses() {
-    if (!this.courses) {
-      return "";
-    }
     return `
     <div class="user__courses admin--info">
       ${this.courses
@@ -194,9 +185,6 @@ class Admin extends User {
 
 class Lector extends User {
   renderCourses() {
-    if (!this.courses) {
-      return "";
-    }
     return `
     <div class="user__courses admin--info">
       ${this.courses
@@ -218,38 +206,25 @@ class Lector extends User {
 
 class Student extends User {}
 
+const roleMap = {
+  student: Student,
+  admin: Admin,
+  lector: Lector,
+};
+
 document.write(`
   <div class="users">
     ${users
-      .map((user) => {
-        if (user.role === "student") {
-          return new Student(
+      .map(
+        (user) =>
+          new roleMap[user.role](
             user.img,
             user.name,
             user.age,
             user.role,
             user.courses
-          );
-        }
-        if (user.role === "admin") {
-          return new Admin(
-            user.img,
-            user.name,
-            user.age,
-            user.role,
-            user.courses
-          );
-        }
-        if (user.role === "lector") {
-          return new Lector(
-            user.img,
-            user.name,
-            user.age,
-            user.role,
-            user.courses
-          );
-        }
-      })
+          )
+      )
       .map((user) => user.render())
       .join("")}
   </div>`);
