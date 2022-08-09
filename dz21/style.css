@@ -1,0 +1,18 @@
+.square {
+  width: 40px;
+  height: 40px;
+  background-color: cadetblue;
+}
+
+.rectangle {
+  width: 80px;
+  height: 40px;
+  background-color: cadetblue;
+}
+
+.circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  background-color: cadetblue;
+}

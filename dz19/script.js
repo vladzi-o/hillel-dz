@@ -85,3 +85,5 @@ console.log("small Burger with mayo", {
   price: smallBurger.getPrice(),
   callories: smallBurger.getCallories(),
 });
+
+console.log(smallBurger);

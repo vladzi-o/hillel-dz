@@ -143,8 +143,8 @@ class User {
         .map((course) => {
           const mark = this.markToGrade(course.mark);
           return `
-            <p class="user__courses--course student">
-              ${course.title} <span class="${mark}">Satisfactory</span>
+            <p class="user__courses--course ${this.role}">
+              ${course.title} <span class="${mark}">${mark}</span>
             </p>
           `;
         })
