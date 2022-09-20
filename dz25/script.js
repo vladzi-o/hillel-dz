@@ -14,7 +14,8 @@ function getFormData() {
   };
 }
 
-function renderHero({ name, universe, isFavorite }) {
+function renderHero(hero) {
+  const { name, universe, isFavorite } = hero;
   const markup = `       
     <td>${name}</td>
     <td>${universe}</td>
@@ -23,10 +24,14 @@ function renderHero({ name, universe, isFavorite }) {
         Favourite: <input ${isFavorite ? "checked" : ""} type="checkbox" />
       </label>
     </td>
-    <td><button>Delete</button></td>`;
+    <td><button class="delete_button">Delete</button></td>`;
   const row = document.createElement("tr");
   row.innerHTML = markup;
   table.appendChild(row);
+  const deleteButton = row.querySelector(".delete_button");
+  deleteButton.addEventListener("click", () => {
+    deleteHero(hero, row);
+  });
 }
 
 function fetchHeroes() {
@@ -38,15 +43,24 @@ function fetchHeroes() {
 }
 
 function addHero(hero) {
-  fetch(`${API_URL}/heroes`, {
+  return fetch(`${API_URL}/heroes`, {
     method: "POST",
+    body: JSON.stringify(hero),
   });
 }
 
-form.addEventListener("submit", (event) => {
+async function deleteHero(hero, row) {
+  await fetch(`${API_URL}/heroes/${hero.id}`, {
+    method: "DELETE",
+  });
+  row.remove();
+}
+
+form.addEventListener("submit", async (event) => {
   event.preventDefault();
-  const hero = getFormData();
-  addHero(hero);
+  const heroFormData = getFormData();
+  const response = await addHero(heroFormData);
+  const hero = await response.json();
   renderHero(hero);
 });
 
