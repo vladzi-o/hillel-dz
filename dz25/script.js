@@ -1,4 +1,7 @@
-const API_URL = "https://6317732882797be77ffd8274.mockapi.io";
+const API_URL = "https://63104dd6826b98071a3d9b42.mockapi.io";
+const HEADERS = {
+  "content-type": "application/json",
+};
 
 const form = document.querySelector("form");
 const nameInput = document.querySelector("#name");
@@ -9,19 +12,19 @@ const table = document.querySelector("#table");
 function getFormData() {
   return {
     name: nameInput.value.trim(),
-    universe: universeSelect.value,
-    isFavorite: isFavoriteCheckbox.checked,
+    comics: universeSelect.value,
+    favourite: isFavoriteCheckbox.checked,
   };
 }
 
 function renderHero(hero) {
-  const { name, universe, isFavorite } = hero;
+  const { name, comics, favourite } = hero;
   const markup = `       
     <td>${name}</td>
-    <td>${universe}</td>
+    <td>${comics}</td>
     <td>
       <label class="heroFavouriteInput">
-        Favourite: <input ${isFavorite ? "checked" : ""} type="checkbox" />
+        Favourite: <input ${favourite ? "checked" : ""} type="checkbox" />
       </label>
     </td>
     <td><button class="delete_button">Delete</button></td>`;
@@ -35,7 +38,7 @@ function renderHero(hero) {
 }
 
 function fetchHeroes() {
-  fetch(`${API_URL}/heroes`)
+  fetch(`${API_URL}/heroes`, { headers: HEADERS })
     .then((response) => response.json())
     .then((data) => {
       data.forEach(renderHero);
@@ -46,12 +49,14 @@ function addHero(hero) {
   return fetch(`${API_URL}/heroes`, {
     method: "POST",
     body: JSON.stringify(hero),
+    headers: HEADERS,
   });
 }
 
 async function deleteHero(hero, row) {
   await fetch(`${API_URL}/heroes/${hero.id}`, {
     method: "DELETE",
+    headers: HEADERS,
   });
   row.remove();
 }
