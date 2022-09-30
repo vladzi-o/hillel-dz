@@ -1,0 +1,19 @@
+{
+  "name": "dz26",
+  "version": "1.0.0",
+  "description": "dz26",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vladzi-o/hillel-dz.git"
+  },
+  "author": "Vladzio",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/vladzi-o/hillel-dz/issues"
+  },
+  "homepage": "https://github.com/vladzi-o/hillel-dz#readme"
+}
