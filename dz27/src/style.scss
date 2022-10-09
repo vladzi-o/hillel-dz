@@ -1,0 +1,40 @@
+table {
+  width: 600px;
+  text-align: center;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+table,
+th,
+td {
+  border: 1px solid;
+}
+
+.mark {
+  width: 35px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 2px;
+}
+
+td {
+  width: 130px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+  width: 8px;
+}
+
+form {
+  margin-top: 15px;
+}
